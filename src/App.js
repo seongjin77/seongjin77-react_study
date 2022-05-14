@@ -1,23 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+function Header(){
+    return  <header>
+            <h1><a href="/">WEB</a></h1>
+            </header>
+}
 
+/* 사용자 정의 함수를 컴퍼넌트라고 부른다 */
+function Nav(){
+    return <nav>
+       <ol>
+         <li><a href="/">html</a></li>
+         <li><a href="/">css</a></li>
+         <li><a href="/">js</a></li>
+         <li><a href="/">react</a></li>
+       </ol>
+            </nav>
+
+}
+function Article(){
+  return  <article>
+          <h2>Welcome</h2>
+          Hello, WEB
+           </article>
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <Header></Header>
+     <Header></Header>
+     <Header></Header>
+      <Nav></Nav>
+      <Nav></Nav>
+      <Article></Article>
     </div>
   );
 }
