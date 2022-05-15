@@ -21,7 +21,7 @@ function Nav(){
 function Article(){
   return  <article>
           <h2>Welcome</h2>
-          Hello, WEB
+          Hello, WEB....
            </article>
 }
 function App() {
