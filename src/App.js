@@ -36,6 +36,7 @@ function Nav(props){
             </nav>
 
 }/// Nav 함수 끝
+///////////////APP 함수///////////////
 function App() {
   const mode = 'WELCOME';
   const topics = [
@@ -43,6 +44,12 @@ function App() {
         {id: 2, title: 'css', body: 'css is ...'},
         {id: 3, title: 'javascript', body: 'javascript is ...'}
   ];
+  let content = null;
+  if(mode === 'WELCOME'){
+      content = <Article title='welcome' body='hello, web'></Article>
+  } else if (mode === 'READ') {
+      content = <Article title='Read' body='hello, Read'></Article>
+  }
   return (
     <div>
      <Header title='REACT' onchangeMode={()=>{
@@ -51,7 +58,7 @@ function App() {
       <Nav topics={topics} onchangeMode={(id)=>{
         alert(id);
       }}></Nav>
-      <Article title='welcome' body='hello, web'></Article>
+      
     </div>
   );
 }
