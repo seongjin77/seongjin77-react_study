@@ -37,7 +37,7 @@ function Nav(props){
 
 }/// Nav 함수 끝
 function App() {
-
+  const mode = 'WELCOME';
   const topics = [
         {id: 1, title: 'html', body: 'html is ...'},
         {id: 2, title: 'css', body: 'css is ...'},
