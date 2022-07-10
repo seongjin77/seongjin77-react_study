@@ -9,29 +9,32 @@ import TestCom from "./TestCom";
 /* 자동으로 변수를 랜더링하고 싶을때만 useState사용  */
 /* useState에는 배열로 값을 담을 수 있다. */
 /* useState는 변경시에 같은 데이터일 경우 바뀌지 않는다. */
-
-const Modal = function () {
+const Modal = function (props) {
   return (
     <div className="modal">
-      <h4>제목</h4>
+      <h4>{props.글제목[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button>글제목</button>
     </div>
   );
 };
+
 
 ///////////////APP 함수///////////////
 
 function App() {
   let post = "강남 맛집";
   let [글제목, b] = useState([
-    "남자 코트 추천",
-    "여자 코트 추천",
-    "옷가게추천",
-  ]);
+    '남자 코트 추천',
+    '여자 코트 추천',
+    '옷 가게 추천'
+  ]
+  );
   let [현재날짜, c] = useState("7월 7일");
-  let [좋아요, 숫자증가] = useState(0);
+  let [like, increase] = useState([3,1,2]);
   let [modal, setModal] = useState(false);
+  let [title] = useState(0);
   return (
     <div className="App">
       <div className="black-nav">
@@ -61,32 +64,55 @@ function App() {
       </button>
 
       {/* <div className='list'>
-        <h4>{글제목[0]} <span onClick={()=> {숫자증가(좋아요+1)}}>👍</span> {좋아요}</h4>
+        <h4>{글제목[0]} <span onClick={()=> {increase(like+1)}}>👍</span> {like}</h4>
         <p>{현재날짜}</p>
       </div>
       <div className='list'>
         <h4 onClick={()=>{
           setModal(!modal)
-        }}>{글제목[1]}<span>👍</span> {좋아요}</h4>
+        }}>{글제목[1]}<span>👍</span> {like}</h4>
         <p>{현재날짜}</p>
       </div>
       <div className='list'>
-        <h4>{글제목[2]}<span>👍</span> {좋아요}</h4>
+        <h4>{글제목[2]}<span>👍</span> {like}</h4>
         <p>{현재날짜}</p>
       </div> */}
       <TestCom />
       {글제목.map(function (e, i) {
-       return( 
-        <div className='list' key={i}>
-        <h4>{e}<span onClick={()=> {
-          숫자증가(좋아요+1)
-        }}>👍</span> {좋아요[i]}</h4>
-        <p>{현재날짜}</p>
-      </div>)
+        // console.log(like[i])
+        return (
+          <div className="list" key={i}>
+            <h4
+              onClick={() => {
+                setModal(!modal);
+              }}
+            >
+              {e}
+              </h4>
+              <button
+                onClick={()=>{
+                  console.log(like[i])
+                  console.log(typeof like[i]);
+                  // console.log(typeof like);
+                  // let copy = [...like];
+                  // copy[i] = copy[i]+1
+                  increase(like[i]+1);
+                  // b(글제목[i].like+1)
+                }}
+              >
+                👍
+              </button>
+              {like[i]}
+            
+            <p>{현재날짜}</p>
+          </div>
+        );
       })}
-      {modal === true ? <Modal /> : null}
+      {modal === true ? <Modal 글제목 = {글제목} /> : null}
     </div>
   );
+
+  
 }
 
 export default App;
