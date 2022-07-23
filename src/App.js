@@ -19,6 +19,15 @@ const Modal = function (props) {
   );
 };
 
+const Modal2 = function (props){
+  return <div>
+          <h4>{props.입력값}</h4>
+          <div></div>
+  </div>
+  
+  
+};
+
 ///////////////APP 함수///////////////
 
 function App() {
@@ -33,12 +42,15 @@ function App() {
   let [like, increase] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, settitle] = useState(0);
+  let [입력값, 입력값변경] = useState("");
+  let [modal2, setModal2] = useState(false);
 
   return (
     <div className="App">
       <div className="black-nav">
         <h4 style={{ color: "orange", fontSize: "15px" }}>블로그입니다</h4>
       </div>
+      {modal2 ? <Modal2 입력값={입력값}/> : null}
 
       <buntton
         onClick={() => {
@@ -74,18 +86,30 @@ function App() {
             >
               {e}
             </h4>
-            <button onClick={()=>{
-              let likebt = [...like];
-              likebt[i] = likebt[i]+1;
-              increase(likebt);
-
-            }}>👍</button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                let likebt = [...like];
+                likebt[i] = likebt[i] + 1;
+                increase(likebt);
+              }}
+            >
+              👍
+            </button>
             {like[i]}
 
             <p>{현재날짜}</p>
           </div>
         );
       })}
+      <input
+        onChange={(e) => {
+          입력값변경(e.target.value);
+        }}
+      />
+      <button onClick={() => {
+        setModal2(!modal2);
+      }}>클릭</button>
       {modal === true ? <Modal title={title} 글제목={글제목} /> : null}
     </div>
   );
