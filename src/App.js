@@ -32,7 +32,7 @@ function App() {
   let [현재날짜, c] = useState("7월 7일");
   let [like, increase] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
-  let [title] = useState(0);
+  let [title, settitle] = useState(0);
 
   return (
     <div className="App">
@@ -69,6 +69,7 @@ function App() {
             <h4
               onClick={() => {
                 setModal(!modal);
+                settitle(i);
               }}
             >
               {e}
@@ -85,7 +86,7 @@ function App() {
           </div>
         );
       })}
-      {modal === true ? <Modal 글제목={글제목} /> : null}
+      {modal === true ? <Modal title={title} 글제목={글제목} /> : null}
     </div>
   );
 }
