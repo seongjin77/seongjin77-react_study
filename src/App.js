@@ -2,7 +2,6 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
-import TestCom from "./TestCom";
 /* 반드시 대문자로 만들어야함 */
 /* 사용자 정의 함수를 컴퍼넌트라고 부른다 */
 /* { } 대괄호는 데이터 바인딩문법이라 한다. */
@@ -20,21 +19,21 @@ const Modal = function (props) {
   );
 };
 
-
 ///////////////APP 함수///////////////
 
 function App() {
+  const onClick = (e, i) => {};
   let post = "강남 맛집";
   let [글제목, b] = useState([
-    '남자 코트 추천',
-    '여자 코트 추천',
-    '옷 가게 추천'
-  ]
-  );
+    "남자 코트 추천",
+    "여자 코트 추천",
+    "옷 가게 추천",
+  ]);
   let [현재날짜, c] = useState("7월 7일");
-  let [like, increase] = useState([3,1,2]);
+  let [like, increase] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title] = useState(0);
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -63,21 +62,6 @@ function App() {
         Change
       </button>
 
-      {/* <div className='list'>
-        <h4>{글제목[0]} <span onClick={()=> {increase(like+1)}}>👍</span> {like}</h4>
-        <p>{현재날짜}</p>
-      </div>
-      <div className='list'>
-        <h4 onClick={()=>{
-          setModal(!modal)
-        }}>{글제목[1]}<span>👍</span> {like}</h4>
-        <p>{현재날짜}</p>
-      </div>
-      <div className='list'>
-        <h4>{글제목[2]}<span>👍</span> {like}</h4>
-        <p>{현재날짜}</p>
-      </div> */}
-      <TestCom />
       {글제목.map(function (e, i) {
         // console.log(like[i])
         return (
@@ -88,31 +72,22 @@ function App() {
               }}
             >
               {e}
-              </h4>
-              <button
-                onClick={()=>{
-                  console.log(like[i])
-                  console.log(typeof like[i]);
-                  // console.log(typeof like);
-                  // let copy = [...like];
-                  // copy[i] = copy[i]+1
-                  increase(like[i]+1);
-                  // b(글제목[i].like+1)
-                }}
-              >
-                👍
-              </button>
-              {like[i]}
-            
+            </h4>
+            <button onClick={()=>{
+              let likebt = [...like];
+              likebt[i] = likebt[i]+1;
+              increase(likebt);
+
+            }}>👍</button>
+            {like[i]}
+
             <p>{현재날짜}</p>
           </div>
         );
       })}
-      {modal === true ? <Modal 글제목 = {글제목} /> : null}
+      {modal === true ? <Modal 글제목={글제목} /> : null}
     </div>
   );
-
-  
 }
 
 export default App;
